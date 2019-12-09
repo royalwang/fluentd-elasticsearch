@@ -28,14 +28,14 @@ BUILD_DEPS="make gcc g++ libc6-dev ruby-dev libffi-dev"
 
 # apt install
 apt-get update
-apt-get install -y --no-install-recommends $BUILD_DEPS ca-certificates libjemalloc2 ruby
+apt-get install -y --no-install-recommends "${BUILD_DEPS}" ca-certificates libjemalloc2 ruby
 
 # ruby install
 echo 'gem: --no-document' >> /etc/gemrc 
 gem install --file Gemfile
 
 # cleanup
-apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS
+apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false "${BUILD_DEPS}"
 apt-get clean -y
 rm -rf \
    /var/cache/debconf/* \
